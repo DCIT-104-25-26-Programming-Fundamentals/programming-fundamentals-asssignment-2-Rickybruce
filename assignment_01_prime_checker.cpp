@@ -36,5 +36,3 @@
 
 #include <iostream>
 using namespace std;
-
-// This is a commit message 
