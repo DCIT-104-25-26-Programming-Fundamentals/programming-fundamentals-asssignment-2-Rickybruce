@@ -36,3 +36,30 @@
 
 #include <iostream>
 using namespace std;
+bool isPrime(int n) {
+    if (n < 2) return false;
+    if (n == 2 || n == 3) return true;
+    if (n % 2 == 0 || n % 3 == 0) return false;
+
+    int i = 5;
+    while (i * i <= n) {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+        i += 6;
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    cout << "Enter a number: ";
+    if (!(cin >> n)) return 0;
+
+    if (isPrime(n)) {
+        cout << n << " is a prime number." << endl;
+    } else {
+        cout << n << " is NOT a prime number." << endl;
+    }
+
+    return 0;
+}
