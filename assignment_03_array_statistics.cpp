@@ -40,5 +40,28 @@
 // =============================================================================
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
+int main (){
+    
+    int n;
+    cout <<"How many numbers? ";
+    if(!(cin >> n)){
+        cout<<"Error : Invalid input";
+        return 1 ;
+    }
+    if (n <= 0){
+       cout<<"Error: number must be a positive non-zero integer ";
+       return 1 ;
+    }
+    vector <int> nums;
+    for (int i =1 ; i <= n ; i++){
+        int num;
+        cout<<"Enter number: "<< i;
+        cin>> num ;
+        nums.push_back(num);
+    }
+
+    return 0;
+}
