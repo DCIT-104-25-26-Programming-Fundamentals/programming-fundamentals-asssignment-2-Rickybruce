@@ -46,3 +46,36 @@
 #include <iostream>
 using namespace std;
 
+char getGrade(int n) {
+    // return null character for invalid scores
+    if (n > 100 || n < 0) return '\0';
+
+    if (n >= 80)
+        return 'A';
+    else if (n >= 70)
+        return 'B';
+    else if (n >= 60)
+        return 'C';
+    else if (n >= 50)
+        return 'D';
+    else
+        return 'F';
+}
+
+int main() {
+    int n;
+    cout << "Enter student score (0 - 100): ";
+    if (!(cin >> n)) {
+        cout << "Error: invalid input." << endl;
+        return 1;
+    }
+
+    char grade = getGrade(n);
+    if (grade == '\0') {
+        cout << "Error: Score must be between 0 and 100." << endl;
+    } else {
+        cout << "Grade: " << grade << endl;
+    }
+
+    return 0;
+}
