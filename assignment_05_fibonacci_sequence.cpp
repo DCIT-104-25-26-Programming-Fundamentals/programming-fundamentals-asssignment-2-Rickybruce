@@ -49,5 +49,71 @@
 // =============================================================================
 
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
+std:: vector<int> fibonacci_seq(int n){
+    std::vector<int> seq;
+    for(int i= 0 ; i<n ; i++){
+        if(i==0){
+            seq.push_back(0);
+        }
+        else if(i==1){
+            seq.push_back(1);
+        }
+        else{
+            seq.push_back(seq[i-2]+seq[i-1]);
+        }
+    }
+    return seq;
+}
+bool fib_ver(int n){
+    if (n == 0 || n == 1) return true;
+    std:: vector<int> fib_seq = fibonacci_seq(n);
+    for(int i =0 ; i< n ; i++){
+        if(n == fib_seq[i]){
+            return true ;
+            break;
+        }
+    }
+    return false;
+}
+
+int main(){
+    int n;
+    cout<<"How many terms? ";
+    cin>>n;
+
+    if(n <= 0){
+        cout<<"Number must be a positive non zero integer";
+        return 1;
+    }
+    std:: vector<int> fib_seq = fibonacci_seq(n);
+    std:: string fib_seq_out = "";
+    for (int i =0 ; i < n ;i++){
+        fib_seq_out += std::to_string(fib_seq[i]);
+
+        if( i< n-1 ){
+            fib_seq_out += ", ";
+        }
+    }
+    std::cout <<"Fiboncci sequence: "<<fib_seq_out<<std::endl;
+
+    int j;
+    cout<<"Enter a number to check: ";
+    cin>>j;
+    if(j < 0){
+        cout<<"Number must be a positive integer";
+        return 1;
+    }else if(fib_ver(j)){
+        cout<<j<<" is a Fibonacci number.";
+    }else{
+        cout<<j<<" is NOT a Fibonacci number.";
+    }
+
+
+
+
+    return 0;
+}
