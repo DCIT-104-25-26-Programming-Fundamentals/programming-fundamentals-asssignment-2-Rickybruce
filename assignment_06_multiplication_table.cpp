@@ -63,12 +63,27 @@ string single_multiplication_table(int n){
     }
     return output;
 }
+string range_mutiplication_table(int N){
+    string output = "";
+    for(int j = 1; j <= N; j++){
+        for(int i = 1; i <= 12; i++){
+            output+= to_string(j)+"  x  "+ to_string(i) + "  =  "+to_string(i*j) + "\n";
+        }
+        output+= "-------------------------------------\n";
+    }
+    return output ;
+}
 int main(){
     int n;
     cout<<"Enter the positve number you want multiplies of? ";
     cin>>n;
-    string table = single_multiplication_table(n);
-    cout<<table;
+    string single_table = single_multiplication_table(n);
+    cout<<single_table;
+    int N;
+    cout<<"Enter a number : ";
+    cin>>N;
+    string range_table =range_mutiplication_table(N);
+    cout<<range_table;
 
 return 0;
 }
