@@ -72,4 +72,84 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
+double addition(double a,double b){
+    return a+b;
+}
+ double subtraction(double a,double b){
+    return a-b;
+}
+double multiplication(double a,double b){
+    return a*b;
+}
+double division(double a,double b){
+    return a/b;
+}
+int modul(int a,int b){
+    return a % b;
+}
+double exponentiation(double a,double b){
+    return std::pow(a, b);
+}
 
+int main(){
+   int n;
+   cout << fixed << setprecision(2);
+    cout<<
+    " ========================================\n"
+    "      SIMPLE CALCULATOR\n"
+    " =========================================\n"
+   "1. Addition\n"
+   "2. Subtraction\n"
+   "3. Multiplication\n"
+   "4. Division\n"
+   "5. Modulus\n"
+   "6. Exponentiation\n"
+   "7. Quit\n"
+   "Select an operation (1-7): ";
+
+    while(n != 7){
+        cout<<"Select an operation (1-7): ";
+        cin>>n;
+        if (n == 7){
+        cout<<"Goodbye"<<endl;
+        break;
+        }
+        if (n < 1 || n > 7) {
+            cout << "Error: Invalid operation choice." << endl;
+            continue;
+        }
+
+        double firstNum,secondNum;
+        cout<<"Enter first number : ";
+        cin>>firstNum;
+        cout<<"Enter second number: ";
+        cin>>secondNum;
+
+        if(n==1){
+            cout << "Result: " << firstNum << " + " << secondNum << " == " << addition(firstNum, secondNum) << endl;
+        }
+        else if(n==2){
+            cout << "Result: " << firstNum << " - " << secondNum << " == " << subtraction(firstNum, secondNum) << endl;
+        }
+        else if(n==3){
+            cout << "Result: " << firstNum << " * " << secondNum << " == " << multiplication(firstNum, secondNum) << endl;
+        }else if(n == 4){
+            if( secondNum == 0){
+                cout<<"Error: Cannot divide by zero.";
+            }else{
+               cout << "Result: " << firstNum << " / " << secondNum << " == " << division(firstNum, secondNum) << endl;
+            }
+        }else if(n==5){
+           if (static_cast<int>(secondNum) == 0) {
+                cout << "Error: Cannot perform modulus by zero." << endl;
+            } else {
+                cout << "Result: " << static_cast<int>(firstNum) << " % " << static_cast<int>(secondNum) 
+                     << " == " << modul(static_cast<int>(firstNum), static_cast<int>(secondNum)) << endl;
+            }
+        }else if(n==6){
+            cout << "Result: " << firstNum << " ^ " << secondNum << " == " << exponentiation(firstNum, secondNum) << endl;
+            }
+
+}
+return 0;
+}
