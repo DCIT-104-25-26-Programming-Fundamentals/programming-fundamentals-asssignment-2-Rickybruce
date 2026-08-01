@@ -56,4 +56,19 @@
 
 #include <iostream>
 using namespace std;
+string single_multiplication_table(int n){
+    string output = "";
+    for(int i = 1; i <= 12; i++){
+      output+= to_string(n)+"  x  "+ to_string(i) + "  =  "+to_string(i*n) + "\n";
+    }
+    return output;
+}
+int main(){
+    int n;
+    cout<<"Enter the positve number you want multiplies of? ";
+    cin>>n;
+    string table = single_multiplication_table(n);
+    cout<<table;
 
+return 0;
+}
