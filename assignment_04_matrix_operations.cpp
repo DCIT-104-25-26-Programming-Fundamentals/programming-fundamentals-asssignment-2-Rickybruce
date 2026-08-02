@@ -65,3 +65,150 @@
 #include <string>
 using namespace std;
 
+void input_matrix(int matrix[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << "Enter element [" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+void print_matrix(int matrix[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << setw(5) << matrix[i][j];
+        }
+        cout << "\n";
+    }
+}
+
+void transpose_matrix(int matrix[10][10], int rows, int cols) {
+    int result[10][10];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+    cout << "\nTransposed Matrix:\n";
+    print_matrix(result, cols, rows);
+}
+
+void add_matrices(int A[10][10], int B[10][10], int rows, int cols) {
+    int result[10][10];
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    cout << "\nResultant Matrix (A + B):\n";
+    print_matrix(result, rows, cols);
+}
+
+void multiply_matrices(int A[10][10], int B[10][10], int r1, int c1, int c2) {
+    int result[10][10] = {0};
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            for (int k = 0; k < c1; k++) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    cout << "\nResultant Matrix (A x B):\n";
+    print_matrix(result, r1, c2);
+}
+
+int main() {
+    int choice;
+    cout << " ========================================\n"
+         << "           MATRIX OPERATIONS\n"
+         << " ========================================\n"
+         << "1. Transpose Matrix\n"
+         << "2. Add Matrices\n"
+         << "3. Multiply Matrices\n"
+         << "4. Quit\n";
+
+    while (true) {
+        cout << "\nEnter your choice (1-4): ";
+        cin >> choice;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Error: Invalid input. Please enter a number.\n";
+            continue;
+        }
+
+        if (choice == 4) {
+            cout << "Goodbye\n";
+            break;
+        }
+
+        if (choice < 1 || choice > 4) {
+            cout << "Error: Invalid operation choice.\n";
+            continue;
+        }
+
+        if (choice == 1) {
+            int rows, cols;
+            int A[10][10];
+            cout << "Enter number of rows: ";
+            cin >> rows;
+            cout << "Enter number of columns: ";
+            cin >> cols;
+
+            cout << "Enter elements for Matrix:\n";
+            input_matrix(A, rows, cols);
+
+            cout << "\nOriginal Matrix:\n";
+            print_matrix(A, rows, cols);
+
+            transpose_matrix(A, rows, cols);
+        }
+        else if (choice == 2) {
+            int rows, cols;
+            int A[10][10], B[10][10];
+            cout << "Enter number of rows: ";
+            cin >> rows;
+            cout << "Enter number of columns: ";
+            cin >> cols;
+
+            cout << "Enter elements for Matrix A:\n";
+            input_matrix(A, rows, cols);
+
+            cout << "Enter elements for Matrix B:\n";
+            input_matrix(B, rows, cols);
+
+            add_matrices(A, B, rows, cols);
+        }
+        else if (choice == 3) {
+            int r1, c1, r2, c2;
+            int A[10][10], B[10][10];
+
+            cout << "Enter number of rows for Matrix A: ";
+            cin >> r1;
+            cout << "Enter number of columns for Matrix A: ";
+            cin >> c1;
+
+            cout << "Enter number of rows for Matrix B: ";
+            cin >> r2;
+            cout << "Enter number of columns for Matrix B: ";
+            cin >> c2;
+
+            if (c1 != r2) {
+                cout << "Error: Columns of A must match Rows of B for multiplication!\n";
+                continue;
+            }
+
+            cout << "Enter elements for Matrix A:\n";
+            input_matrix(A, r1, c1);
+
+            cout << "Enter elements for Matrix B:\n";
+            input_matrix(B, r2, c2);
+
+            multiply_matrices(A, B, r1, c1, c2);
+        }
+    }
+
+    return 0;
+}

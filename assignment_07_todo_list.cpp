@@ -79,4 +79,83 @@
 #include <vector>
 #include <string>
 using namespace std;
+string add_todo(vector<string>& todos) {
+    string new_todo;
+    cout<<"Enter task: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, new_todo);
+    todos.push_back(new_todo);
+    return new_todo;
+}
+string view_all_todos(vector<string>& todos){
+    string output = "Your Tasks: \n";
+    size_t length = todos.size();
+    if(todos.empty()){
+        output ="";
+        output = "Hey, you don't have any active task to perform";
+    }
+    else{
+        for(int i =1; i<=length ; i++){
+           output += to_string(i) + ". " + todos[i - 1] + "\n";
+        }
+    }
+    return output;
+}
+string delete_todo(vector<string>& todos, int todo_num) {
+    if (todos.empty()) {
+        return "Your to-do list is already empty!";
+    }
+    if  (todo_num < 1 || todo_num > static_cast<int>(todos.size())) {
+        return "Error: Invalid task number!";
+    }
+    string deleted_task = todos [todo_num - 1];
+    todos.erase(todos.begin() +  (todo_num - 1));
+    return "Successfully deleted: \"" + deleted_task + "\"";
+}
 
+int main(){
+    vector<string>todos;
+    int n;
+    cout<<
+    " ========================================\n"
+    "      TO-DO LIST MENU\n"
+    " =========================================\n"
+   "1. Add task\n"
+   "2. View tasks\n"
+   "3. Delete task\n"
+   "4. Quit\n";
+
+   while(true){
+    cout<<"Enter your choice (1-4): ";
+    cin>>n;
+    if (cin.fail()) {
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            cout << "Error: Invalid input. Please enter a number.\n";
+            continue;
+        }
+    if(n==4){
+        cout<<"Goodbye";
+        break;
+    }
+    if (n < 1 || n > 4) {
+            cout << "Error: Invalid input choice.\n";
+            continue;
+    }
+    if(n==1){
+    string output = add_todo(todos);
+      cout<<"Task added: \"" <<output<<"\"\n";
+    }
+    else if(n==2){
+        cout<<view_all_todos(todos);
+    }
+    else if(n==3){
+        int todo_num;
+        cout<<"Enter task number to delete: ";
+        cin>>todo_num;
+       cout<<delete_todo(todos,todo_num)<<endl;
+    }
+       }
+
+    return 0;
+}

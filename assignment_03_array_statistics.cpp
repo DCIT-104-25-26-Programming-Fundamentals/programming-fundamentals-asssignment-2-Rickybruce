@@ -44,57 +44,70 @@
 #include <iomanip>
 using namespace std;
 
-int sum(const vector <int>& nums , int n) {
-        int total =0 ;
-        for(int i =0 ; i < n;i ++){
-            total += nums[i];
-        }
-        return total;
+int sum(const vector<int> &nums, int n)
+{
+    int total = 0;
+    for (int i = 0; i < n; i++)
+    {
+        total += nums[i];
+    }
+    return total;
 }
-double average(const vector<int>& nums , int n){
-    double average = (sum(nums ,n)*1.0)/ n;
+double average(const vector<int> &nums, int n)
+{
+    double average = (sum(nums, n) * 1.0) / n;
     return average;
 }
-int maximum(const vector <int>& nums ,int n){
+int maximum(const vector<int> &nums, int n)
+{
     int Maximum = nums[0];
-    for(int i = 0;i <n ;i++){
-        if(Maximum < nums[i]){
+    for (int i = 0; i < n; i++)
+    {
+        if (Maximum < nums[i])
+        {
             Maximum = nums[i];
         }
     }
     return Maximum;
 }
-int minimum(const vector <int>& nums ,int n){
+int minimum(const vector<int> &nums, int n)
+{
     int Minimum = nums[0];
-    for(int i = 0;i <n ;i++){
-        if(Minimum > nums[i]){
+    for (int i = 0; i < n; i++)
+    {
+        if (Minimum > nums[i])
+        {
             Minimum = nums[i];
         }
     }
     return Minimum;
 }
-int main (){  
+int main()
+{
     int n;
-    cout <<"How many numbers? ";
-    if(!(cin >> n)){
-        cout<<"Error : Invalid input";
-        return 1 ;
+    cout << "How many numbers? ";
+    if (!(cin >> n))
+    {
+        cout << "Error : Invalid input";
+        return 1;
     }
-    if (n <= 0){
-       cout<<"Error: number must be a positive non-zero integer ";
-       return 1 ;
+    if (n <= 0)
+    {
+        cout << "Error: number must be a positive non-zero integer ";
+        return 1;
     }
-    vector <int> nums;
-    for (int i =1 ; i <= n ; i++){
+    vector<int> nums;
+    for (int i = 1; i <= n; i++)
+    {
         int num;
-        cout<<"Enter number "<<i<<": ";
-        cin>> num ;
+        cout << "Enter number " << i << ": ";
+        cin >> num;
         nums.push_back(num);
     }
-    cout<<"Result"<<endl;
-    cout<<"Sum :        "<< sum(nums,n)<<endl;
-    cout<<"Average :    "<< fixed<<setprecision(2)<< average(nums,n)<<endl;
-    cout<<"Maximum :    "<< maximum(nums,n)<<endl;
-    cout<<"Minimum :    "<< minimum(nums,n)<<endl;
+    cout << "Result" << endl;
+    cout << "Sum :        " << sum(nums, n) << endl;
+    cout << "Average :    " << fixed << setprecision(2) << average(nums, n) << endl;
+    cout << "Maximum :    " << maximum(nums, n) << endl;
+    cout << "Minimum :    " << minimum(nums, n) << endl;
     return 0;
 }
